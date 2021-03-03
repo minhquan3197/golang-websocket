@@ -7,6 +7,7 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
+	ws "github.com/minhquan3197/golang-chat/internal/websocket"
 )
 
 var (
@@ -37,11 +38,17 @@ func hello(c echo.Context) error {
 	}
 }
 
+func joinRoom(c echo.Context) error {
+	ws.ServeWs(c.Response(), c.Request(), c.Param("roomId"))
+	return nil
+}
+
 // Excute func
 func Excute() {
 	e := echo.New()
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 	e.GET("/ws", hello)
+	e.GET("/room/:roomId", joinRoom)
 	e.Logger.Fatal(e.Start(":1323"))
 }

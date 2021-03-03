@@ -5,36 +5,16 @@
       class="flex flex-col mt-2 flex-col-reverse overflow-y-scroll space-y-3 mb-20 pb-3 h-3/5"
     >
       <div
-        class="w-max ml-auto break-all mt-2 mb-1 p-2 rounded-br-none bg-blue-500 rounded-2xl text-white text-left mr-5"
-      >
-        2/10
-      </div>
-      <div
-        class="w-max ml-auto break-all mt-2 mb-1 p-2 rounded-br-none bg-blue-500 rounded-2xl text-white text-left mr-5"
-      >
-        But numbers can
-      </div>
-      <div
         class="other break-all mt-2 ml-5 rounded-bl-none float-none bg-gray-300 mr-auto rounded-2xl p-2"
       >
         Aww thx!!
-      </div>
-      <div
-        class="w-max ml-auto break-all mt-2 mb-1 p-2 rounded-br-none bg-blue-500 rounded-2xl text-white text-left mr-5"
-      >
-        Words can't describe how beautiful you are :)
-      </div>
-      <div
-        class="other break-all mt-2 ml-5 rounded-bl-none float-none bg-gray-300 mr-auto rounded-2xl p-2"
-      >
-        Words can't decsribe how ugly you are ;)
       </div>
     </div>
     <div class="flex flex-row items-center bottom-0 my-2 w-full">
       <div
         class="ml-2 flex flex-row border-gray items-center w-full border rounded-3xl h-12 px-2"
       >
-        <button
+        <!-- <button
           class="focus:outline-none flex items-center justify-center h-10 w-10 hover:text-red-600 text-red-400 ml-1"
         >
           <svg
@@ -51,7 +31,7 @@
               d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
             ></path>
           </svg>
-        </button>
+        </button> -->
         <div class="w-full">
           <input
             type="text"
@@ -61,7 +41,7 @@
           />
         </div>
         <div class="flex flex-row">
-          <button
+          <!-- <button
             class="focus:outline-none flex items-center justify-center h-10 w-8 hover:text-blue-600 text-blue-400"
           >
             <svg
@@ -97,7 +77,7 @@
                 d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
               ></path>
             </svg>
-          </button>
+          </button> -->
         </div>
       </div>
       <div>

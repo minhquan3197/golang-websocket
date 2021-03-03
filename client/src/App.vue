@@ -6,10 +6,9 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, reactive, onMounted } from "vue";
+import { computed, defineComponent, reactive } from "vue";
 import HomePage from "./pages/HomePage.vue";
 import Header from "./components/common/Header.vue";
-import { Config } from "./config/config";
 
 export default defineComponent({
   name: "App",
@@ -19,26 +18,9 @@ export default defineComponent({
   },
   setup: () => {
     const state = reactive({
-      connection: null,
       randomName: computed(() => {
         return "User " + new Date().getTime().toString();
       }),
-    });
-
-    onMounted(() => {
-      console.log("Starting connection to WebSocket Server");
-      state.connection = new WebSocket(Config.websocketUrl + "/ws");
-      state.connection.onmessage = function (event) {
-        console.log(event.data, "bbbbbbbb");
-      };
-
-      state.connection.onopen = function (event) {
-        console.log("Connected");
-      };
-
-      setInterval(function () {
-        state.connection.send("Hello, Server!");
-      }, 1000);
     });
 
     return {

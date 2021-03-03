@@ -18,7 +18,7 @@
           alt=""
         />
         <div class="title mt-11 ml-3 font-bold flex flex-col">
-          <div class="name break-words">Sarah</div>
+          <div class="name break-words">{{ user.name }}</div>
           <!--  add [dark] class for bright background -->
           <div class="add font-semibold text-sm italic dark">Model</div>
         </div>
@@ -28,8 +28,9 @@
       >
         <div
           class="add border rounded-l-2xl rounded-r-sm border-gray-300 p-1 px-4 cursor-pointer hover:bg-gray-700 hover:text-white"
+          @click="joinRoom(user.id)"
         >
-          Contact
+          Join
         </div>
         <!-- <div class="add border rounded-r-2xl rounded-l-sm border-gray-300 p-1 px-4 cursor-pointer hover:bg-gray-700 hover:text-white">Bio</div> -->
       </div>
@@ -38,27 +39,69 @@
   </div>
 </template>
 <script lang="ts">
-import { computed, defineComponent, reactive, ref } from "vue";
+import { computed, defineComponent, reactive, onMounted } from "vue";
+import { Config } from "../../config/config";
 export default defineComponent({
   name: "Card",
   setup: () => {
     const state = reactive({
+      connection: null,
       users: computed(() => {
         return [
           {
-            name: "Test 1",
+            id: 1,
+            name: "Room 1",
           },
-          { name: "Test 2" },
-          { name: "Test 3" },
-          { name: "Test 4" },
-          { name: "Test 5" },
-          { name: "Test 6" },
+          {
+            id: 2,
+            name: "Room 2",
+          },
+          {
+            id: 3,
+            name: "Room 3",
+          },
+          {
+            id: 4,
+            name: "Room 4",
+          },
+          {
+            id: 5,
+            name: "Room 5",
+          },
+          {
+            id: 6,
+            name: "Room 6",
+          },
         ];
       }),
+    });
+    onMounted(() => {
+      console.log("Starting connection to WebSocket Server");
+      state.connection = new WebSocket(Config.websocketUrl + "/room/1");
+      state.connection.onmessage = function (event) {
+        console.log(event.data, "bbbbbbbb");
+      };
+
+      state.connection.onopen = function (event) {
+        console.log("Connected");
+      };
+      setInterval(function () {
+        state.connection.send("Hello, Server!");
+      }, 1000);
     });
     return {
       state,
     };
+  },
+  methods: {
+    joinRoom(roomId: number) {
+      console.log("Starting connection to WebSocket Server");
+      let connection = new WebSocket(Config.websocketUrl + "/room/" + roomId);
+      connection.onmessage = function (event) {
+        console.log(event.data, "bbbbbbbb");
+      };
+      connection.onopen = () => connection.send("hello");
+    },
   },
 });
 </script>
@@ -67,6 +110,6 @@ export default defineComponent({
   object-fit: cover;
 }
 .holder {
-  height: 75vh;
+  height: 80vh;
 }
 </style>
